@@ -1,7 +1,9 @@
-const Sequelize = require("sequelize");
-const sequelize = new Sequelize(DATABASE, USER, PASSWORD, {
-    host: HOST,
-    dialect: mysql,
+const Sequelize = require('sequelize');
+require('dotenv').config()
+
+const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
+    host: process.env.DB_HOST,
+    dialect: 'mysql',
     operatorsAliases: false,
   
     pool: {
@@ -17,4 +19,4 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 db.articles = require('./article.model')(sequelize, Sequelize);
 
-module.exports = { db };
+module.exports = db;

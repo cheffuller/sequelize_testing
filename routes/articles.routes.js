@@ -1,10 +1,11 @@
 module.exports = app => {  
-    const articles = require('../controllers/article.controller.js');
+    const articles = require('../controllers/articles.controller');
+    var router = require('express').Router();  
     
-    var router = require('express').Router();  // Create a new Article
-    router.post('/', articles.create);  // Retrieve a single Article with id
-    router.get('/:id', articles.findOne);  // Update a Article with id
-    router.put('/:id', articles.update);  // Delete a Article with id
+    router.post('/', articles.create);
+    router.get('/', articles.findAll)
+    router.get('/:id', articles.findOne);
+    router.put('/:id', articles.update);
     router.delete('/:id', articles.delete);
 
     app.use('/api/articles', router);

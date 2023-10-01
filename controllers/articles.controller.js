@@ -21,6 +21,26 @@ exports.create = (req, res) => {
     });
 };
 
+// Find All Articles
+exports.findAll = (req, res) => {
+    const id = req.params.id;
+    Article.findAll()
+      .then(data => {
+        if (data) {
+          res.send(data);
+        } else {
+          res.status(404).send({
+            message: `Cannot find Articles`
+          });
+        }
+      })
+      .catch(err => {
+        res.status(500).send({
+        message: "Error retrieving Articles"
+      });
+    });
+  };
+
 // Find Single Article
 exports.findOne = (req, res) => {
   const id = req.params.id;
